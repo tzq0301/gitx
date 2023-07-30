@@ -34,7 +34,7 @@ var commitCmd = &cobra.Command{
 				return
 			}
 
-			fmt.Println(status.String())
+			fmt.Print(status.String())
 		}
 
 		{
