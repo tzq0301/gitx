@@ -43,3 +43,13 @@ func Status(repo *git.Repository) *git.Status {
 func Amend() {
 	lo.Must0(exec.Command("git", "commit", "--amend", "--no-edit").Run())
 }
+
+func Push(repo *git.Repository) {
+	lo.Must0(lo.Must(repo.Remote("origin")).Push(&git.PushOptions{}))
+}
+
+func PushForce(repo *git.Repository) {
+	lo.Must0(lo.Must(repo.Remote("origin")).Push(&git.PushOptions{
+		Force: true,
+	}))
+}

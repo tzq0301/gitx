@@ -13,6 +13,8 @@ const (
 	gitCommitWithMessage = "git commit -m <msg>"
 	gitCommitAmend       = "git commit --amend --no-edit"
 	gitPullRebase        = "git pull --rebase"
+	gitPush              = "git push"
+	gitPushForce         = "git push --force"
 )
 
 const (
