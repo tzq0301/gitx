@@ -30,6 +30,7 @@ var commitCmd = &cobra.Command{
 			status := gitx.Status(repo)
 
 			if status.IsClean() {
+				fmt.Println("Clean.")
 				return
 			}
 
