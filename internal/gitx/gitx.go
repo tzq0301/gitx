@@ -1,8 +1,6 @@
 package gitx
 
 import (
-	"errors"
-	"os"
 	"os/exec"
 	"strings"
 
@@ -44,25 +42,4 @@ func Status(repo *git.Repository) *git.Status {
 
 func Amend() {
 	lo.Must0(exec.Command("git", "commit", "--amend", "--no-edit").Run())
-}
-
-func Push(repo *git.Repository) {
-	err := lo.Must(repo.Remote("origin")).Push(&git.PushOptions{
-		Progress: os.Stdout,
-	})
-	if errors.Is(err, git.NoErrAlreadyUpToDate) {
-		return
-	}
-	lo.Must0(err)
-}
-
-func PushForce(repo *git.Repository) {
-	err := lo.Must(repo.Remote("origin")).Push(&git.PushOptions{
-		Force:    true,
-		Progress: os.Stdout,
-	})
-	if errors.Is(err, git.NoErrAlreadyUpToDate) {
-		return
-	}
-	lo.Must0(err)
 }
