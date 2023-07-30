@@ -13,7 +13,7 @@ func CurrentRepository() (*git.Repository, error) {
 }
 
 func CurrentBranch(repo *git.Repository) string {
-	return strings.TrimLeft(lo.Must(repo.Head()).String(), "refs/heads/")
+	return strings.TrimLeft(lo.Must(repo.Head()).Name().String(), "refs/heads/")
 }
 
 func CurrentWorktree(repo *git.Repository) *git.Worktree {

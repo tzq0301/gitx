@@ -1,6 +1,8 @@
 package main
 
 import (
+	"log"
+
 	"github.com/AlecAivazis/survey/v2"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
@@ -44,8 +46,12 @@ var commitCmd = &cobra.Command{
 		}
 
 		{
-			hash := gitx.Commit(repo, commitMessage)
-			showCommitResult(gitx.CurrentBranch(repo), hash.String(), commitMessage)
+			if len(commitMessage) != 0 {
+				hash := gitx.Commit(repo, commitMessage)
+				showCommitResult(gitx.CurrentBranch(repo), hash.String(), commitMessage)
+			} else {
+				log.Fatalln()
+			}
 		}
 	},
 }
