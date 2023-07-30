@@ -4,6 +4,7 @@ import (
 	"fmt"
 
 	"github.com/go-git/go-git/v5"
+	"github.com/go-git/go-git/v5/plumbing/color"
 	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 
@@ -24,7 +25,7 @@ func init() {
 
 	branch := lo.Must(gitx.CurrentBranch(repo))
 
-	fmt.Printf("Current Branch: %s\n\n", branch.Name())
+	fmt.Printf("Current Branch: %s %s %s\n", color.Green, branch.Name(), color.Reset)
 
 	rootCmd.AddCommand(
 		addCmd,
