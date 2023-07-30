@@ -1,6 +1,7 @@
 package gitx
 
 import (
+	"os/exec"
 	"strings"
 
 	"github.com/go-git/go-git/v5"
@@ -37,4 +38,8 @@ func Status(repo *git.Repository) *git.Status {
 	worktree := CurrentWorktree(repo)
 	status := lo.Must(worktree.Status())
 	return &status
+}
+
+func Amend() {
+	lo.Must0(exec.Command("git", "commit", "--amend", "--no-edit").Run())
 }

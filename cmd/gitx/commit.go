@@ -12,6 +12,7 @@ import (
 
 var (
 	commitMessage string
+	amend         bool
 )
 
 var commitCmd = &cobra.Command{
@@ -47,15 +48,23 @@ var commitCmd = &cobra.Command{
 
 		{
 			if len(commitMessage) != 0 {
+				executing(gitCommitWithMessage)
 				hash := gitx.Commit(repo, commitMessage)
 				showCommitResult(gitx.CurrentBranch(repo), hash.String(), commitMessage)
+			} else if amend {
+				executing(gitCommitAmend)
+				gitx.Amend()
 			} else {
 				log.Fatalln()
 			}
 		}
+
+		println()
+		suggestRebase()
 	},
 }
 
 func init() {
 	commitCmd.Flags().StringVarP(&commitMessage, "message", "m", "", "")
+	commitCmd.Flags().BoolVarP(&amend, "amend", "", false, "")
 }
