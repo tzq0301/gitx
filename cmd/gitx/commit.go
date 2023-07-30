@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 
 	"github.com/AlecAivazis/survey/v2"
@@ -31,6 +32,8 @@ var commitCmd = &cobra.Command{
 			if status.IsClean() {
 				return
 			}
+
+			fmt.Println(status.String())
 		}
 
 		{
