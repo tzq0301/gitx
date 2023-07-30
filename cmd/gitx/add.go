@@ -1,7 +1,6 @@
 package main
 
 import (
-	"github.com/samber/lo"
 	"github.com/spf13/cobra"
 
 	"github.com/tzq0301/gitx/internal/gitx"
@@ -9,8 +8,9 @@ import (
 
 var addCmd = &cobra.Command{
 	Use:   "add",
-	Short: "git add -A",
+	Short: gitAddAll,
 	Run: func(cmd *cobra.Command, args []string) {
-		lo.Must0(gitx.AddAll(repo))
+		executing(gitAddAll)
+		gitx.AddAll(repo)
 	},
 }

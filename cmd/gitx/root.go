@@ -23,12 +23,13 @@ var rootCmd = &cobra.Command{
 func init() {
 	repo = lo.Must(gitx.CurrentRepository())
 
-	branch := lo.Must(gitx.CurrentBranch(repo))
+	branch := gitx.CurrentBranch(repo)
 
-	fmt.Printf("Current Branch: %s %s %s\n", color.Green, branch.Name(), color.Reset)
+	fmt.Printf("%s%s%s%s\n", promptCurrentBranch, color.Green, branch, color.Reset)
 
 	rootCmd.AddCommand(
 		addCmd,
+		commitCmd,
 		versionCmd,
 	)
 }
